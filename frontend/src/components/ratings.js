@@ -9,9 +9,7 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import Select from "@material-ui/core/Select";
 import CollabFilteringModel from "./CollabFilteringModel";
-import ConentFilteringModel from "./ContentFilteringModel";
 import * as data from "./data";
-import ContentFilteringModel from "./ContentFilteringModel";
 
 class Ratings extends Component {
   constructor(props) {
@@ -25,22 +23,20 @@ class Ratings extends Component {
       svdpp: [],
       als: [],
       showCollabModel: "",
-      showContentModel: "",
+      content : [],
       showRecommendations: false,
       isCollabFiltering: false,
-      isContentFiltering: false
     };
     this.handleSelectChange = this.handleSelectChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.showRecommendations = this.showRecommendations.bind(this);
     this.handleCollabModelChange = this.handleCollabModelChange.bind(this);
-    this.handleContentModelChange = this.handleContentModelChange.bind(this);
     this.handleRecommendations = this.handleRecommendations.bind(this);
   }
 
   componentDidMount() {
     this.useCSSStyles();
-    this.setState({ als: data.als, svd: data.svd, svdpp: data.svdpp });
+    this.setState({ als: data.als, svd: data.svd, svdpp: data.svdpp ,content : data.content});
   }
 
   handleInputChange(event) {
@@ -51,10 +47,8 @@ class Ratings extends Component {
     this.setState({ filtering: event.target.value });
     if ("collaborative" === event.target.value) {
       this.setState({ isCollabFiltering: true });
-      this.setState({ isContentFiltering: false });
-    } else if ("content" === event.target.value) {
+    } else {
       this.setState({ isCollabFiltering: false });
-      this.setState({ isContentFiltering: true });
     }
   }
 
@@ -62,10 +56,7 @@ class Ratings extends Component {
     this.setState({ showCollabModel: event.target.value });
   }
 
-  handleContentModelChange(event) {
-    this.setState({ showContentModel: event.target.value });
-  }
-
+  
   handleRecommendations(data) {
     const { username } = this.state;
     let recommendations = [];
@@ -78,7 +69,7 @@ class Ratings extends Component {
   }
 
   showRecommendations() {
-    const { als, svd, svdpp } = this.state;
+    const { als, svd, svdpp,content } = this.state;
     this.setState({ showRecommendations: true });
     if (this.state.filtering === "collaborative") {
       if (this.state.showCollabModel === "als") {
@@ -89,13 +80,7 @@ class Ratings extends Component {
         this.handleRecommendations(svdpp);
       }
     } else if (this.state.filtering === "content") {
-      if (this.state.showContentModel === "gb") {
-        console.log("naive bayes");
-      } else if (this.state.showContentModel === "lr") {
-        console.log("logistic regression");
-      } else if (this.state.showContentModel === "rf") {
-        console.log("random forest");
-      }
+        this.handleRecommendations(content);
     }
   }
 
@@ -127,7 +112,6 @@ class Ratings extends Component {
     const {
       showRecommendations,
       isCollabFiltering,
-      isContentFiltering,
       recommendations
     } = this.state;
     let subFilter = null;
@@ -137,18 +121,6 @@ class Ratings extends Component {
           <CollabFilteringModel
             handleSelectChange={event => this.handleCollabModelChange(event)}
             model={this.state.showCollabModel}
-          />
-          <br />
-          <br />
-        </div>
-      );
-    }
-    if (isContentFiltering) {
-      subFilter = (
-        <div>
-          <ContentFilteringModel
-            handleSelectChange={event => this.handleContentModelChange(event)}
-            model={this.state.showContentModel}
           />
           <br />
           <br />

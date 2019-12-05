@@ -24,5 +24,14 @@ export const svd = [
     ["Queenie","The Lazy Loaf and Kettle","Midori Japanese Cafe","Pfanntastic Pannenkeok Haus","Higher Ground","Phoenix Grill"  ],
     ["Doug","The Gladly","Sprouts Farmers' Market","In-N-Out Burger","Andy's Frozen Custars","Red White and Brew"  ],
     ["Adam","Chip Malt","Ho Ho Barbqeue","Shawarma Land","O Polerio BBQ","Jimmy' Coffe"  ],
-    ["Jane","Edible Arrangements","Original Pancake House","A Piece of Havana","Pizza Hut","Sonic Drive-In"  ]
+    ["Jane","Original Pancake House","Edible Arrangements","Pizza Hut","A Piece of Havana","Sonic Drive-In"  ]
   ]
+
+  export const content  =[
+    ["Jeff","Mucho Macho Taco","Coreleone's","Rubio's","Limon Tacos and Tequila","El Encato DOS"  ],
+    ["Jill","Pad Thai Restaurant","Nacho Derry Downtown","Goldan Corral","",""  ],
+    ["Queenie","The Lazy Loaf and Kettle","Midori Japanese Cafe","Pfanntastic Pannenkeok Haus","Higher Ground","Phoenix Grill"  ],
+    ["Doug","The Gladly","Sprouts Farmers' Market","In-N-Out Burger","Andy's Frozen Custars","Red White and Brew"  ],
+    ["Adam","Chip Malt","Ho Ho Barbqeue","Shawarma Land","O Polerio BBQ","Jimmy' Coffe"  ],
+    ["Jane","Earl of Sandwich","A Piece of Havana","Napoli Pizza"  ,"The Gladly","Lazy Bear"]
+  ];
